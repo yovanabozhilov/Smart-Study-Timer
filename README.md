@@ -39,8 +39,6 @@ It consists of multiple modules that interact based on **multi-layered architect
 - **MySQL** – Relational database used for storing user data and session records.  
 - **HTML, CSS, JavaScript** – Technologies for building the graphical user interface.  
 
----  
-
 ## **System Deployment**  
 
 ### **1. Installing Required Dependencies via Maven**  
@@ -77,8 +75,6 @@ mvn clean install
 python -m http.server 3000
 ```  
 - Once started, the views will be accessible at **http://127.0.0.1:3000**.  
-
----  
 
 ## **User Interface Implementation**  
 
