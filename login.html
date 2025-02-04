@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Smart Study Timer, Start Now, A smart timer for study is a cutting-edge tool designed to optimize your study sessions. It features customizable time blocks for focused work and breaks, based on popular methods like the Pomodoro Technique. This ensures balanced productivity and mental well-being.">
+    <meta name="description" content="">
+    <title>Login</title>
+    <link rel="stylesheet" href="/css/index.css" media="screen">
+    <link rel="stylesheet" href="/css/LoginAndRegisterForm.css" media="screen">
+    <script src="/js/validation.js" type="text/javascript"></script>
+</head>
+
+<body data-home-page="index.html" data-home-page-title="Home" data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
+<header class="u-clearfix u-header u-header" id="sec-3452">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="header-left">
+            <a href="#" class="u-image u-logo u-image-1" data-image-width="1024" data-image-height="1024">
+                <img src="/images/logo.png" class="u-logo-image u-logo-image-1" alt="Company Logo">
+            </a>
+            <h1 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1">Smart Study Timer</h1>
+        </div>
+        <nav class="header-right u-menu u-menu-one-level u-offcanvas u-menu-1">
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" th:href="@{/index}" style="padding: 10px 0;">HOME</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" th:href="@{/login}" style="padding: 10px 0;">LOG IN</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" th:href="@{/register}" style="padding: 10px 0;">REGISTER</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="form_l" id="login-form">
+        <form onsubmit="return validateLoginFormOnSubmit(this);" th:action="@{/login}" method="post">
+            <h4>Log in</h4>
+            <br>
+
+            <!-- Username Field -->
+            <label for="username">Username:</label>
+            <input type="username" id="username" name="username" required><br>
+
+            <!-- Password Field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit" name="login_button">
+
+            <!-- Link to Registration Page -->
+            <p class="message"><a th:href="@{/register}">Don’t have a profile yet? Go ahead and create one now!</a></p>
+        </form>
+    </div>
+</main>
+
+
+<footer class="u-footer" id="sec-5c8d">
+    <div class="u-footer-container">
+        <p class="u-footer-text">Smart Study Timer<br>Made by Branka and Jovana</p>
+    </div>
+</footer>
+</body>
+
+</html>
