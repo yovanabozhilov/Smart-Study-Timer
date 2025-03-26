@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="Smart Study Timer, Start Now, A smart timer for study is a cutting-edge tool designed to optimize your study sessions. It features customizable time blocks for focused work and breaks, based on popular methods like the Pomodoro Technique. This ensures balanced productivity and mental well-being.">
+  <meta name="description" content="">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/css/index.css" media="screen">
+  <link rel="stylesheet" href="/css/Timer.css" media="screen">
+  <style>
+   body {
+      font-family: Arial, sans-serif;
+     
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #444;
+      background-color: #f7f7f7; 
+      padding: 10px 20px; 
+      border: 2px solid #ddd; 
+      border-radius: none; 
+    }
+
+    .profile-section {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    .profile-section img {
+      width: 120px; 
+      height: auto; 
+      object-fit: cover; 
+      object-position: center;
+      border: none; 
+      margin-right: 20px;
+      border-radius: 0; 
+    }
+
+    .profile-details {
+      font-size: 18px;
+    }
+
+    .profile-details p {
+      margin: 5px 0;
+      font-weight: bold;
+    }
+
+    .profile-details span {
+      font-weight: normal;
+      color: #555;
+    }
+
+    .study-stats {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .stats-card {
+      background: #f7f7f7;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1;
+      margin: 0 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #f17c8e;
+    }
+
+    .stats-card p {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 0;
+      color: #333;
+    }
+
+    .stats-card span {
+      display: block;
+      margin-top: 5px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      background: #444;
+      color: white;
+      font-size: 14px;
+      border-radius: 0 0 0 0;
+    }
+  </style>
+  <script>
+	document.addEventListener("DOMContentLoaded", function () {
+
+         // Home Button - goes to the home page
+         document.querySelector("#wellcome-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/wellcome.html"; // Correct path to index page
+         });
+
+         // Login Button - goes to the login page
+         document.querySelector("#profile-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/profile.html"; // Correct path to login page
+         });
+
+         // Register Button - goes to the registration page
+         document.querySelector("#logout-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/register.html"; // Correct path to register page
+         });
+
+     });
+	</script>
+</head>
+<body>
+<header class="u-clearfix u-header u-header" id="sec-3452">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <div class="header-left">
+      <a href="#" class="u-image u-logo u-image-1" data-image-width="1024" data-image-height="1024">
+        <img src="/images/logo.png" class="u-logo-image u-logo-image-1" alt="Company Logo">
+      </a>
+      <h1 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1">Smart Study Timer</h1>
+    </div>
+    <nav class="header-right u-menu u-menu-one-level u-offcanvas u-menu-1">
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="wellcome-button" style="padding: 10px 0;">TIMER</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="profile-button" style="padding: 10px 0;">PROFILE</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="logout-button" style="padding: 10px 0;">LOG OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+  </div>
+</header>
+
+
+<main>
+ <div class="container">
+  <h2>User Information</h2>
+   <div class="profile-section">
+   <div class="profile-details">
+	<p><strong>First Name:</strong> <span id="firstName"></span></p>
+    <p><strong>Last Name:</strong> <span id="lastName"></span></p>
+    <p><strong>Email:</strong> <span id="email"></span></p>
+    <p><strong>Username:</strong> <span id="username"></span></p>
+	</div>
+	<div>
+	<h3>Studying for the week</h3>
+	<p><strong>Current week:</strong> <span id="weekStart"></span>  <span id="weekEnd"></span></p>
+    <p><strong>Time spent studying:</strong> <span id="timeSpent"></span></p>
+    <p><strong>Number of study sessions:</strong> <span id="numOfSessions"></span></p>
+	</div>
+	<div>
+	<h3>Studying for the day</h3>
+	<p><strong>Current day:</strong> <span id="day"></span></p>
+    <p><strong>Time spent studying:</strong> <span id="timeSpent2"></span></p>
+    <p><strong>Number of study sessions:</strong> <span id="numOfSessions2"></span></p>
+	</div>
+</div>
+</div>	
+</main>
+
+<script>
+function fetchUserProfile() {
+    const username = sessionStorage.getItem('username') || localStorage.getItem('username');
+
+    if (!username) {
+        console.error("User is not logged in.");
+        return;
+    }
+
+    console.log(`Fetching profile for username: ${username}`);
+
+    // Send a GET request to the backend with the username as a query parameter
+    fetch(`http://localhost:8081/api/v1/user/profile?username=${encodeURIComponent(username)}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',  // Ensure the session is included
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch user data');
+        }
+        return response.json();
+    })
+    .then(data => {
+    console.log('Profile Data:', data);
+
+    // Display profile data on the page
+    document.getElementById('username').textContent = data.username || 'N/A';
+    document.getElementById('firstName').textContent = data.firstName || 'N/A';
+    document.getElementById('lastName').textContent = data.lastName || 'N/A';
+    document.getElementById('email').textContent = data.email || 'N/A';
+	})
+    .catch(error => {
+        console.error('Error fetching user data:', error);
+    });
+}
+
+function fetchUserProfile2() {
+    const username = sessionStorage.getItem('username') || localStorage.getItem('username');
+
+    if (!username) {
+        console.error("User is not logged in.");
+        return;
+    }
+
+    console.log(`Fetching profile and timer for username: ${username}`);
+
+    fetch(`http://localhost:8082/api/v1/timer/profile-current-week?username=${encodeURIComponent(username)}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',  // Ensure the session is included
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch timer data');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Profile and Timer Data:', data);
+
+        // Ensure the 'data' object contains the expected 'timer' property
+        if (data && data.timeSpentStudying !== undefined) {
+            // Display the time spent studying (formatting it as needed)
+            document.getElementById('timeSpent').textContent = formatTime(data.timeSpentStudying);
+
+            // Display other fields as well
+            document.getElementById('numOfSessions').textContent = data.numberOfStudySessions || 'N/A';
+            document.getElementById('weekStart').textContent = data.weekStartDate || 'N/A';
+            document.getElementById('weekEnd').textContent = data.weekEndDate || 'N/A';
+        } else {
+            console.error('Timer data is missing or invalid:', data);
+            document.getElementById('timeSpent').textContent = 'N/A';
+            document.getElementById('numOfSessions').textContent = 'N/A';
+            document.getElementById('weekStart').textContent = 'N/A';
+            document.getElementById('weekEnd').textContent = 'N/A';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching user and timer data:', error);
+        document.getElementById('timeSpent').textContent = 'Error';
+        document.getElementById('numOfSessions').textContent = 'Error';
+        document.getElementById('weekStart').textContent = 'Error';
+        document.getElementById('weekEnd').textContent = 'Error';
+    });
+}
+
+function fetchUserProfile3() {
+    const username = sessionStorage.getItem('username') || localStorage.getItem('username');
+
+    if (!username) {
+        console.error("User is not logged in.");
+        return;
+    }
+
+    console.log(`Fetching profile and timer for username: ${username}`);
+
+    fetch(`http://localhost:8082/api/v1/timer/profile-current-day?username=${encodeURIComponent(username)}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include',  // Ensure the session is included
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch timer data');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Profile and Timer Data:', data);
+
+    
+        if (data && data.timeSpentStudying !== undefined) {
+        
+            document.getElementById('timeSpent2').textContent = formatTime(data.timeSpentStudying);
+
+            // Display other fields as well
+            document.getElementById('numOfSessions2').textContent = data.numberOfStudySessions || 'N/A';
+            document.getElementById('day').textContent = data.currentDay || 'N/A';
+        } else {
+            console.error('Timer data is missing or invalid:', data);
+            document.getElementById('timeSpent2').textContent = 'N/A';
+            document.getElementById('numOfSessions2').textContent = 'N/A';
+            document.getElementById('day').textContent = 'N/A';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching user and timer data:', error);
+        document.getElementById('timeSpent2').textContent = 'Error';
+        document.getElementById('numOfSessions2').textContent = 'Error';
+        document.getElementById('day').textContent = 'Error';
+    });
+}
+
+// Utility function to format time in a more readable way (hh:mm:ss)
+function formatTime(seconds) {
+    if (seconds == null || isNaN(seconds)) {
+        return 'N/A';
+    }
+
+    const hrs = Math.floor(seconds / 3600);           // Hours
+    const mins = Math.floor((seconds % 3600) / 60);   // Minutes
+    const secs = seconds % 60;                        // Seconds
+
+    return `${hrs}h ${mins}m ${secs}s`;
+}
+
+window.onload = function() {
+	fetchUserProfile();
+    fetchUserProfile2();
+	fetchUserProfile3();
+};
+</script>
+
+<footer class="u-footer" id="sec-5c8d">
+  <div class="u-footer-container">
+    <p class="u-footer-text">Smart Study Timer<br>Made by Branka and Jovana</p>
+  </div>
+</footer>
+
+</body>
+</html>

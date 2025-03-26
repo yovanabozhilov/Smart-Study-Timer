@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Smart Study Timer, Start Now, A smart timer for study is a cutting-edge tool designed to optimize your study sessions. It features customizable time blocks for focused work and breaks, based on popular methods like the Pomodoro Technique. This ensures balanced productivity and mental well-being.">
+    <meta name="description" content="">
+    <title>Wellcome</title>
+    <link rel="stylesheet" href="/css/index.css" media="screen">
+    <link rel="stylesheet" href="/css/Timer.css" media="screen">
+    <style>
+
+        main {
+            position: relative;
+            height: calc(100vh - 100px); /* Adjust for header and footer */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover; /* Ensures background image covers the screen */
+            background-position: center; /* Center the image */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+        }
+
+        .background-upload {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #background-input {
+            display: none;
+        }
+
+		#status {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+
+        .menu {
+            position: absolute;
+            top: calc(100% + -50px);
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu button, #toggleButton, #endSessionButton, #audio-select {
+            background-color: #808080; /* Grey background */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 8px;
+            margin: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Smooth transition */
+        }
+
+        .menu button:hover, #toggleButton:hover, #endSessionButton:hover, #audio-select:hover {
+            background-color: #555555; /* Darker grey when hovered */
+        }
+
+        #audio-select {
+            border-radius: 0px; /* No rounded corners */
+            width: auto; /* Let it adjust to its content */
+            padding: 1px; /* Adjust padding for better appearance */
+        }
+    </style>
+	<script>
+	document.addEventListener("DOMContentLoaded", function () {
+
+         // Home Button - goes to the home page
+         document.querySelector("#wellcome-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/wellcome.html"; // Correct path to index page
+         });
+
+         // Login Button - goes to the login page
+         document.querySelector("#profile-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/profile.html"; // Correct path to login page
+         });
+
+         // Register Button - goes to the registration page
+         document.querySelector("#logout-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/register.html"; // Correct path to register page
+         });
+
+     });
+	</script>
+	<script>
+	document.getElementById('logout-button').addEventListener('click', function() {
+    // Send a GET request to the logout endpoint
+    fetch('http://localhost:8081/api/v1/user/logout', {
+        method: 'GET',
+        credentials: 'include',  // Include session information (cookies)
+    })
+    .then(response => response.json())  // Parse the response as JSON
+    .then(data => {
+        if (data.status) {
+            // If logout was successful, handle the success (e.g., show a message or redirect)
+            console.log(data.message);  // Log the success message
+            // Optionally, you can redirect or update the UI as needed
+            window.location.href = '/';  // Redirect to the homepage
+        } else {
+            console.error('Logout failed:', data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error during logout:', error);
+    });
+});
+	</script>
+</head>
+<body>
+<header class="u-clearfix u-header u-header" id="sec-3452">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="header-left">
+            <a href="#" class="u-image u-logo u-image-1" data-image-width="1024" data-image-height="1024">
+                <img src="/images/logo.png" class="u-logo-image u-logo-image-1" alt="Company Logo">
+            </a>
+            <h1 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1">Smart Study Timer</h1>
+        </div>
+        <nav class="header-right u-menu u-menu-one-level u-offcanvas u-menu-1">
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="wellcome-button" style="padding: 10px 0;">TIMER</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="profile-button" style="padding: 10px 0;">PROFILE</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="logout-button" style="padding: 10px 0;">LOG OUT</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+
+<main>
+
+    <div id="control buttons">
+        <label for="background-input" class="background-upload">Set Background</label>
+        <input type="file" id="background-input" onchange="changeBackground(event)" accept=".jpg, .jpeg, .png">
+    </div>
+
+    <div class="container" id="timer-container">
+        <h1>Study Timer</h1>
+        <div id="timer" class="timer" style="color: white;">00:00:00</div>
+        <button id="toggleButton" onclick="toggleMode()">Study</button>
+        <button id="endSessionButton" onclick="endStudySession()">End Study Session</button>
+        <div id="status">Break Time</div>
+
+        <div class="menu">
+            <label for="audio-select">Choose your study audio:</label>
+            <select id="audio-select" onchange="playAudio(value)">
+                <option value="ArwcHjmsw3A?si=zwnsTLODlJTgFpom">White Noise</option>
+                <option value="WPni755-Krg?si=tjXDmH89nDg6d6x9">Alpha Waves</option>
+                <option value="lTRiuFIWV54?si=yZBrtgHBOZJ29hgz">Lofi hip hop</option>
+                <option value="uX6usZWiMAo?si=vnrkDkxQqfYOXzRL">Alpha BiNaural Beat </option>
+                <option value="4bZbC6RzydA?si=jbMSHPQbOSAdAscr">New Age Music</option>
+                <option value="SllpB3W5f6s?si=EyBH_j0xkdnXgtZN">Dark academia</option>
+                <option value="lkkGlVWvkLk?si=CJ5PREq1lx4PnGVJ">Gamma Binaural Beats</option>
+            </select>
+        </div>
+        <!-- Invisible iframe that plays audio -->
+        <div class="video-container">
+            <iframe id="youtube-audio" src="https://www.youtube.com/embed/ArwcHjmsw3A?si=zwnsTLODlJTgFpom " allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+    </div>
+
+</main>
+
+<script>
+    let currentBackground = "/images/default-background.jpg";
+
+	
+
+    function setDefaultBackground() {
+        document.body.style.backgroundImage = `url(${currentBackground})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundPosition = 'center';
+        document.body.style.transition = 'background-image 0.5s ease-in-out';  // Smooth transition
+    }
+
+
+    function changeBackground(event) {
+        const file = event.target.files[0]; // Get the selected file
+
+        // Check if the file is a jpg or png
+        const validFormats = ['image/jpeg', 'image/png'];
+
+        if (file) {
+            if (validFormats.includes(file.type)) {
+                const reader = new FileReader(); // Create a FileReader to read the file
+
+                // When the file is read, set it as the background image
+                reader.onload = function(e) {
+                    const newBackground = e.target.result; // Get the data URL of the selected image
+                    document.body.style.backgroundImage = `url(${newBackground})`; // Set the background image
+                    document.body.style.backgroundSize = 'cover';
+                    document.body.style.backgroundPosition = 'center';
+                    document.body.style.transition = 'background-image 0.5s ease-in-out';  // Smooth transition
+
+                    currentBackground = newBackground; // Update the global variable with the new background
+                };
+
+                reader.readAsDataURL(file); // Read the file as a data URL
+            } else {
+                alert('Please select a JPG or PNG file.');
+            }
+        }
+    }
+
+
+    window.onload = setDefaultBackground;
+</script>
+
+<script>
+    function playAudio(videoId) {
+        var iframe = document.getElementById('youtube-audio');
+        iframe.src = "https://www.youtube.com/embed/" + videoId;
+            document.querySelector('.video-container').style.display = 'block';
+        }
+</script>
+
+<script>
+let timerInterval;
+let seconds = 0; // Tracks total elapsed time for the current session (study or break)
+let timeSpentStudying = 0; // Tracks total study time
+let breakTime = 0; // Tracks total break time
+let numberOfStudySessions = 0; // Track the number of study sessions
+let mode = ''; // Store the current mode (study or break)
+let sessionStarted = false; // Track if the session has started
+let studyTimestamps = []; 
+
+let currentStudyTime = 0; // Initialize study time for the current session
+let currentBreakTime = 0; // Initialize break time for the current session
+
+const timerElement = document.getElementById("timer");
+const toggleButton = document.getElementById("toggleButton");
+const statusElement = document.getElementById("status");
+
+let startTime, endTime;
+
+function initializeTimer() {
+    mode = ''; 
+    seconds = 0; 
+    timerElement.innerText = formatTime(seconds); // Display 00:00:00
+    statusElement.innerText = ''; 
+    toggleButton.innerText = 'Start Study Session'; 
+    sessionStarted = false; 
+}
+
+window.onload = function () {
+    setDefaultBackground(); // Set the default background
+    initializeTimer(); // Initialize the timer
+};
+
+// Start the study timer
+function startStudyTimer() {
+    mode = 'study'; 
+	currentStudyTime = timeSpentStudying;
+    statusElement.innerText = 'Study Time'; 
+    timerElement.style.color = 'white'; 
+    startTimer(); 
+}
+
+// Start the break timer
+function startBreakTimer() {
+    mode = 'break'; 
+     currentBreakTime = 0;
+    statusElement.innerText = 'Break Time'; 
+    timerElement.style.color = 'gray'; 
+    startTimer(); 
+}
+
+function startTimer() {
+    if (timerInterval) return;  // Prevent multiple intervals from being set
+
+    timerInterval = setInterval(() => {
+        if (mode === 'study') {
+            timeSpentStudying = currentStudyTime++;  // Increment the study time separately
+        } else if (mode === 'break') {
+            breakTime = currentBreakTime++;  // Increment the break time separately
+        }
+        // Update the timer display
+        timerElement.innerText = formatTime(mode === 'study' ? currentStudyTime : currentBreakTime);
+    }, 1000);  // Update every second
+}
+
+
+function toggleMode() {
+    if (!sessionStarted) {
+        startStudyTimer();
+		sessionStarted = true; 
+		numberOfStudySessions++;
+		startTime = new Date(); 
+		studyTimestamps.push(startTime.toISOString());  
+		toggleButton.innerText = 'Start Break';
+    } else if (mode === 'study') {
+        startBreakTimer();
+		toggleButton.innerText = 'Start Study';
+    } else if (mode === 'break') {
+        startStudyTimer();
+		toggleButton.innerText = 'Start Break';
+    }
+}
+
+function endStudySession() {
+    clearInterval(timerInterval);
+    timerInterval = null; 
+    initializeTimer(); 
+    saveTimeData1(); 
+	saveTimeData2();
+    toggleButton.innerText = 'Start Study Session'; 
+    sessionStarted = false; 
+	endTime = new Date();
+	studyTimestamps.push(endTime.toISOString()); 
+}
+
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    return `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
+
+function formatDateToYYYYMMDD(date) {
+    const day = String(date.getDate()).padStart(2, '0'); // Get day and pad with leading zero if needed
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Get month (0-indexed) and pad
+    const year = date.getFullYear(); // Get the full year
+    return `${year}-${month}-${day}`; // Return in yyyy-MM-dd format
+}
+
+const username = sessionStorage.getItem('username') || localStorage.getItem('username') || 'defaultUsername';
+
+function saveTimeData1() {
+    if (!studyTimestamps[0]) {
+        console.error("No study timestamp available.");
+        return;
+    }
+
+    const formattedTimestamp = formatDateToYYYYMMDD(new Date(studyTimestamps[0]));
+
+    if (!username || !timeSpentStudying || !numberOfStudySessions) {
+        console.error('Missing required data');
+        return;
+    }
+
+    const timerData = {
+        username: username,
+        timeSpentStudying: timeSpentStudying, 
+        numberOfStudySessions: numberOfStudySessions
+    };
+
+    console.log(`User: ${username} - Study Time: ${timeSpentStudying} - Study Sessions: ${numberOfStudySessions}`);
+    console.log("Study Timestamp: ", formattedTimestamp);
+
+    // Make sure to send the timestamp as a query parameter
+    const url = `http://localhost:8082/api/v1/timer/save-day-timer?timestamp=${formattedTimestamp}`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'  // Specify JSON content type
+        },
+        body: JSON.stringify(timerData)  // Stringify the data to be sent in the body
+    })
+    .then(response => response.json())  // Expecting a JSON response
+    .then(data => {
+        console.log('Time data saved:', data);
+    })
+    .catch(error => {
+        console.error('Error saving time data:', error);
+    });
+}
+
+function saveTimeData2() {
+    if (!studyTimestamps[0]) {
+        console.error("No study timestamp available.");
+        return;
+    }
+
+    // Format the timestamp for the start of the week
+    const formattedTimestamp = formatDateToYYYYMMDD(new Date(studyTimestamps[0]));
+
+    if (!username || !timeSpentStudying || !numberOfStudySessions) {
+        console.error('Missing required data');
+        return;
+    }
+
+    const timerData = {
+        username: username,
+        timeSpentStudying: timeSpentStudying, 
+        numberOfStudySessions: numberOfStudySessions
+    };
+
+    console.log(`User: ${username} - Study Time: ${timeSpentStudying} - Study Sessions: ${numberOfStudySessions}`);
+    console.log("Study Timestamp: ", formattedTimestamp);
+
+    // URL for saving the weekly timer data
+    const url = `http://localhost:8082/api/v1/timer/save-week-timer?timestamp=${formattedTimestamp}`;
+
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'  // Specify JSON content type
+        },
+        body: JSON.stringify(timerData)  // Send the timer data in the body
+    })
+    .then(response => response.json())  // Expecting a JSON response
+    .then(data => {
+        console.log('Time data saved:', data);
+    })
+    .catch(error => {
+        console.error('Error saving time data:', error);
+    });
+}
+</script>
+
+<footer class="u-footer" id="sec-5c8d">
+    <div class="u-footer-container">
+        <p class="u-footer-text">Smart Study Timer<br>Made by Branka and Jovana</p>
+    </div>
+</footer>
+</body>
+
+</html>

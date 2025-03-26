@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="Smart Study Timer, Start Now, A smart timer for study is a cutting-edge tool designed to optimize your study sessions. It features customizable time blocks for focused work and breaks, based on popular methods like the Pomodoro Technique. This ensures balanced productivity and mental well-being.">
+    <meta name="description" content="">
+    <title>Register</title>
+    <link rel="stylesheet" href="/css/index.css" media="screen">
+    <link rel="stylesheet" href="/css/LoginAndRegisterForm.css" media="screen">
+    <script src="/js/validation.js" type="text/javascript"></script>
+	<script>
+     // Wait for the page to load before adding event listeners
+     document.addEventListener("DOMContentLoaded", function () {
+
+         // Home Button - goes to the home page
+         document.querySelector("#index-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/index.html"; // Correct path to index page
+         });
+
+         // Login Button - goes to the login page
+         document.querySelector("#login-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/login.html"; // Correct path to login page
+         });
+
+         // Register Button - goes to the registration page
+         document.querySelector("#register-button").addEventListener('click', function (e) {
+             e.preventDefault(); // Prevent default link action
+             window.location.href = "/register.html"; // Correct path to register page
+         });
+
+     });
+    </script>
+	<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#register-form").addEventListener('submit', function (e) {
+        e.preventDefault(); // Prevent the form from submitting normally
+
+        // Gather form data
+        const formData = new FormData(e.target);
+        const data = {};
+
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+
+        // Log the email field specifically to check its value
+        console.log("Email field value:", data.email);
+
+        // Log all form data to check what is being sent
+        console.log("Form data being sent:", data);
+
+        fetch('http://localhost:8081/register', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(data),
+		})
+		.then(response => {
+		if (!response.ok) {
+        
+        return response.text().then(text => { throw new Error(text); });
+		}
+		return response.json();
+		})
+		.then(data => {
+		console.log('Registration successful', data);
+		window.location.assign("/login.html");
+		})
+		.catch(error => {
+		console.error('Error during registration', error);
+		alert(`There was an error during registration: ${error.message}`);
+		});
+    });
+});
+
+	</script>
+</head>
+
+<body data-home-page="index.html" data-home-page-title="Home" data-path-to-root="./" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
+<header class="u-clearfix u-header u-header" id="sec-3452">
+    <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="header-left">
+            <a href="#" class="u-image u-logo u-image-1" data-image-width="1024" data-image-height="1024">
+                <img src="/images/logo.png" class="u-logo-image u-logo-image-1" alt="Company Logo">
+            </a>
+            <h1 class="u-text u-text-default u-text-palette-2-dark-1 u-text-1">Smart Study Timer</h1>
+        </div>
+        <nav class="header-right u-menu u-menu-one-level u-offcanvas u-menu-1">
+            <div class="u-custom-menu u-nav-container">
+                <ul class="u-nav u-spacing-30 u-unstyled u-nav-1">
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link"id="index-button"" style="padding: 10px 0;">HOME</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link"  id="login-button" style="padding: 10px 0;">LOG IN</a>
+                    </li>
+                    <li class="u-nav-item">
+                        <a class="u-border-2 u-button-style u-nav-link" id="register-button" style="padding: 10px 0;">REGISTER</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="form_2" id="register-form">
+        <form onsubmit="return validateRegisterFormOnSubmit(this);" action="/register" method="POST" id="register-form">
+            <h4>Register</h4>
+            <br>
+
+            <!-- First Name -->
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+            <br>
+           
+
+            <!-- Last Name -->
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+            <br>
+           
+
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            
+
+            <!-- Email -->
+            <label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
+			<br>
+            
+
+            <!-- Password -->
+            <label for="password">Password:</label>
+            <input type="password" id="password"  name="password" required>
+            <br>          
+
+            <!-- Submit Button -->
+            <input type="submit" value="Submit" name="register_button">
+
+            <p class="message">
+                <a th:href="@{/login}">You already have a profile?</a>
+            </p>
+        </form>
+    </div>
+</main>
+
+<footer class="u-footer" id="sec-5c8d">
+    <div class="u-footer-container">
+        <p class="u-footer-text">Smart Study Timer<br>Made by Branka and Jovana</p>
+    </div>
+</footer>
+</body>
+
+</html>

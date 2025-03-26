@@ -1,0 +1,305 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the HTML and body elements take the full height of the viewport */
+html, body {
+    height: 100%; /* Ensure the elements take full height of the viewport */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    font-family: sans-serif; /* Set a consistent font family */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the body is a flex container and takes up full height */
+body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh; /* Full height of the viewport */
+}
+
+main {
+    margin-top: 70px; /* Add margin to create space below the header */
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer styles */
+.u-footer {
+    background-color: #333333; /* Dark gray background */
+    color: #ffffff; /* White text color */
+    width: 100%; /* Full width footer */
+    text-align: center; /* Center align the text */
+    padding: 20px 0; /* Add vertical padding for spacing */
+    box-sizing: border-box; /* Include padding in width/height */
+    position: relative; /* Ensure footer positioning is correct */
+    margin-top: 40px; /* Add margin-top to create space above the footer */
+}
+
+/* Footer container */
+.u-footer-container {
+    max-width: 1200px; /* Optional: Limit footer content width */
+    margin: 0 auto; /* Center the content within the footer */
+    text-align: center; /* Center text alignment */
+}
+
+/* Footer text */
+.u-footer-text {
+    font-size: 0.9rem; /* Slightly smaller font size */
+    line-height: 1.5; /* Add line spacing for readability */
+    margin: 0; /* Remove default margin */
+}
+
+/* Container for the logo and heading */
+.header-left {
+    display: flex; /* Align items horizontally */
+    align-items: center; /* Center vertically */
+    gap: 0; /* Add spacing between logo and heading */
+    position: absolute; /* Position it in the corner */
+    top: 0;
+    left: 0;
+    padding: 0; /* No extra padding */
+    margin: 0; /* No extra margin */
+}
+
+/* Logo image */
+.header-left .u-logo-image-1 {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
+}
+
+/* Heading (h1) */
+.header-left .u-text-1 {
+    font-size: 1.5rem; /* Match height with the logo */
+    font-weight: bold; /* Keep the title bold */
+    margin: 0; /* Remove default margins */
+    color: #a35559;
+    letter-spacing: -1.5px; /* Reduce space between letters */
+    padding-left: 1px; /* Optional: Fine-tune spacing closer to logo */
+}
+
+/* Container for the navigation menu */
+.header-right {
+    position: absolute; /* Position relative to the parent */
+    right: 30px; /* Align to the right side */
+    top: 33px; /* Align to the top */
+    display: flex; /* Horizontal alignment of nav links */
+    align-items: center; /* Vertically center links */
+    padding: 0; /* Remove any extra padding */
+    margin: 0; /* Remove any extra margin */
+}
+
+/* Navigation menu styling */
+.header-right .u-nav {
+    display: flex; /* Ensure nav items are inline */
+    gap: 20px; /* Space between each nav item */
+    list-style: none; /* Remove bullet points */
+    padding: 0; /* Remove default list padding */
+    margin: 0; /* Remove default list margin */
+}
+
+/* Navigation links */
+.header-right .u-nav-link {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    color: inherit;
+    border: none;
+    padding: 10px 15px;
+}
+
+/* Hover effect */
+.header-right .u-nav-link:hover {
+    color: #a35559;
+    background-color: transparent;
+}
+
+/* Layout for the entire row */
+.u-layout-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Text Section Style */
+.u-layout-cell-1 {
+    width: 40%; /* Ensure text takes up less than half */
+    padding: 5px 10px; /* Decrease padding to bring text closer to the image */
+    text-align: right; /* Align the text to the right */
+}
+
+.u-text-1 {
+    font-size: 1.5rem; /* Increase font size */
+    line-height: 1.2;  /* Increase line height for better readability */
+
+}
+
+/* Container for the image and text */
+.u-container-style {
+    position: relative; /* Establish a positioning context */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60%;
+    margin: 0 auto;
+
+}
+
+.u-container-style img {
+    position: relative; /* Position the image inside the container */
+    max-width: 90%; /* Make the image fit within the container's width */
+    max-height: 70%; /* Make the image fit within the container's height */
+    width: auto; /* Allow width to scale proportionally */
+    height: auto; /* Allow height to scale proportionally */
+    object-fit: contain; /* Ensure the entire image is visible within the container */
+    z-index: -1; /* Send the image behind the text */
+}
+
+.u-container-layout-2 {
+    position: absolute; /* Absolute positioning relative to the page */
+    top: 40%; /* Place the button in the vertical center of the page */
+    left: 50%; /* Center the button horizontally */
+    transform: translate(-50%, -50%); /* Center the button with translate */
+    z-index: 1; /* Ensure the button is above the image */
+    background: #db545a; /* Solid background color */
+    padding: 40px 60px; /* Increased padding for an even larger button */
+    border-radius: 10px; /* Larger border radius for a more prominent button */
+    text-align: center;
+    margin-left: -40px; /* Move button slightly out to the left */
+    margin-right: -40px; /* Move button slightly out to the right */
+    font-size: 2rem; /* Increased font size for even larger text */
+}
+
+/* Button Text and Icon Style */
+.u-text-2 a {
+    text-decoration: none;
+    color: white;
+    font-size: 3rem; /* Increased font size */
+}
+
+.u-text-2 svg {
+    width: 30px; /* Increased icon size */
+    height: 30px; /* Increased icon size */
+    color: white;
+    margin-right: 20px; /* Increased space between icon and text */
+}
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 768px) {
+    .u-layout-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .u-image {
+        width: 100%; /* Image takes full width on smaller screens */
+    }
+
+    .u-layout-cell-1 {
+        width: 100%; /* Text section takes full width */
+        text-align: center;
+    }
+
+    /* Adjust the button position on smaller screens */
+    .u-container-layout-2 {
+        top: 50%; /* Keep the button vertically centered on small screens */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* General text styling */
+.u-text-3 {
+    font-size: 1.5rem; /* Adjust font size for better readability */
+    line-height: 1.6; /* Adjust line height for better spacing */
+    text-align: center; /* Center-align the text */
+    color: #333; /* Darker text color for contrast */
+    margin: 0 20px; /* Add margin to prevent text from touching edges */
+    padding: 20px 0; /* Add padding to the top and bottom for spacing */
+}
+
+/* Styling for the container of the buttons */
+.u-container-style {
+    position: relative;
+    display: flex;
+    flex-direction: row; /* Align buttons side by side */
+    justify-content: center; /* Center the buttons horizontally */
+    gap: 20px; /* Add spacing between the buttons */
+    margin-top: 20px; /* Add space between the text and buttons */
+}
+
+/* Styling for button containers */
+.u-group {
+    --radius: 30px;
+    width: 200px; /* Set a smaller width for the buttons */
+    min-height: 70px;
+    height: auto;
+    box-shadow: 5px 5px 20px 0 rgba(0, 0, 0, 0.4);
+    margin: 0; /* Remove extra margin */
+}
+
+/* Button border color */
+.u-border-2 {
+    border-width: 2px; /* Set the border width */
+    border-style: solid; /* Make the border solid */
+}
+
+/* Set the border color for buttons to white */
+.u-border-palette-2-light-3 {
+    border-color: white; /* White border color */
+}
+
+/* Button container style */
+.u-group-2, .u-group-3 {
+    background-color: #db545a; /* Set background color for buttons */
+    border-radius: 80px; /* Rounded corners for the buttons */
+    padding: 15px 25px; /* Smaller padding for a more compact button */
+    text-align: center; /* Center the button text */
+    width: 20%; /* Buttons will take up 100% of the container width */
+    border: 2px solid white; /* White border around buttons */
+    font-size: 1.1rem; /* Smaller font size for the buttons */
+}
+
+/* Style for the text in the buttons */
+.u-group-2 a, .u-group-3 a {
+    color: white; /* White text on the buttons */
+    font-size: 1.1rem; /* Adjust font size for buttons */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Button hover effect */
+.u-group-2:hover, .u-group-3:hover {
+    background-color: #c14945; /* Darken the button color on hover */
+    transition: background-color 0.3s ease-in-out; /* Smooth hover transition */
+}
+
+/* Styling for links inside buttons */
+.u-group-2 a:hover, .u-group-3 a:hover {
+    color: white; /* Keep text white when hovering over the links */
+    text-decoration: none; /* No underline on hover */
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+    .u-text-3 {
+        font-size: 1.2rem; /* Smaller font size on smaller screens */
+        margin: 10px; /* Less margin for small screens */
+    }
+
+    /* Adjust buttons on smaller screens */
+    .u-group-2, .u-group-3 {
+        width: 100%; /* Make buttons take up more space on smaller screens */
+    }
+}

@@ -1,0 +1,62 @@
+/* General styling for the timer container */
+#timer-container {
+    text-align: center;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+    width: 60%; /* Set the container width to 60% of the page */
+    margin-left: auto; /* Center the container horizontally */
+    margin-right: auto; /* Center the container horizontally */
+}
+
+/* Timer display */
+#timer-display {
+    font-size: 15vw; /* Use viewport width to scale the timer proportionally to 60% of the page */
+    margin: 20px 0;
+    color: #333; /* Darker text color for contrast */
+    font-weight: bold;
+    letter-spacing: 3px; /* Space out the digits a bit */
+}
+
+/* Timer heading */
+#timer-container h1 {
+    font-size: 2rem; /* Adjust the heading size */
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Timer control buttons */
+#timer-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-top: 20px;
+}
+
+/* Button styling */
+#timer-controls button {
+    padding: 15px 30px;
+    font-size: 1.2rem; /* Increase button font size */
+    color: white;
+    background-color: #db545a; /* Use the same red color from login/register */
+    border: none;
+    border-radius: 30px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Hover effect for buttons */
+#timer-controls button:hover {
+    background-color: #c14945; /* Darker red for hover */
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 480px) {
+    #timer-display {
+        font-size: 25vw; /* Scale down the timer size for small screens */
+    }
+
+    #timer-controls button {
+        padding: 12px 25px; /* Adjust button size for smaller screens */
+        font-size: 1rem;
+    }
+}

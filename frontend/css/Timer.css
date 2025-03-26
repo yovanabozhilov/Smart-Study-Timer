@@ -1,0 +1,35 @@
+#timer-container {
+    background-color: rgba(74, 70, 70, 0.75); /* Green background */
+    color: #ffffff; /* White text color */
+    padding: 50px; /* Add padding for spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add shadow for depth */
+    width: 100%; /* Full width of the page or its parent */
+    max-width: 800px; /* Optional: Limit width of the container */
+    margin: 0 auto; /* Center the container */
+    text-align: center; /* Center text inside the container */
+}
+
+/* Increase the size of the timer text */
+#timer {
+    font-size: 80px; /* Larger font size */
+    font-weight: bold; /* Make the timer text bold */
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7); /* Optional: Add shadow to the timer */
+    margin: 20px 0; /* Add some space above and below the timer */
+}
+
+/* Optional: Style the Start Timer button */
+#startButton {
+    background-color: #393838; /* Yellow background */
+    color: #ffffff; /* Black text */
+    padding: 15px 30px; /* Add more padding for a bigger button */
+    font-size: 18px; /* Increase font size */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for hover effect */
+}
+
+#startButton:hover {
+    background-color: #686868; /* Darker yellow on hover */
+}
