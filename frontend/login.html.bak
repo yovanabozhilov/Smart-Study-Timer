@@ -133,7 +133,7 @@ window.onload = fetchUserProfile;
 
 <footer class="u-footer" id="sec-5c8d">
     <div class="u-footer-container">
-        <p class="u-footer-text">Smart Study Timer<br>Made by Branka and Jovana</p>
+        <p class="u-footer-text">Smart Study Timer<br>Made by Yovana</p>
     </div>
 </footer>
 </body>
