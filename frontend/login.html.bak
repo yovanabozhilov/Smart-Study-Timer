@@ -11,25 +11,21 @@
     <link rel="stylesheet" href="/css/LoginAndRegisterForm.css" media="screen">
     <script src="/js/validation.js" type="text/javascript"></script>
 	<script>
-     // Wait for the page to load before adding event listeners
      document.addEventListener("DOMContentLoaded", function () {
 
-         // Home Button - goes to the home page
          document.querySelector("#index-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/index.html"; // Correct path to index page
+             e.preventDefault(); 
+             window.location.href = "/index.html"; 
          });
 
-         // Login Button - goes to the login page
          document.querySelector("#login-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/login.html"; // Correct path to login page
+             e.preventDefault(); 
+             window.location.href = "/login.html"; 
          });
 
-         // Register Button - goes to the registration page
          document.querySelector("#register-button").addEventListener('click', function (e) {
              e.preventDefault(); // Prevent default link action
-             window.location.href = "/register.html"; // Correct path to register page
+             window.location.href = "/register.html"; 
          });
 
      });
@@ -43,18 +39,16 @@ function fetchUserProfile() {
         return;
     }
 
-    // Create a ProfileDTO object to pass the username
     const profileDto = { username: username };
 
     console.log(`Fetching profile for username: ${username}`);
 
-    // Send a POST request to the backend with the ProfileDTO
     fetch('http://localhost:8081/api/v1/user/profile', {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include',  // Make sure the session is included
+        credentials: 'include', 
     })
     .then(response => {
         if (!response.ok) {
@@ -65,7 +59,6 @@ function fetchUserProfile() {
     .then(data => {
         console.log('Profile Data:', data);
 
-        // Display profile data on the page
         document.getElementById('username').textContent = data.username || 'N/A';
         document.getElementById('firstName').textContent = data.firstName || 'N/A';
         document.getElementById('lastName').textContent = data.lastName || 'N/A';
@@ -114,18 +107,14 @@ window.onload = fetchUserProfile;
     <h4>Log in</h4>
     <br>
 
-    <!-- Username Field -->
     <label for="username">Username:</label>
     <input type="username" id="username" name="username" required><br>
 
-    <!-- Password Field -->
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
 
-    <!-- Submit Button -->
     <input type="submit" value="Submit">
 
-    <!-- Link to Registration Page -->
     <p class="message"><a href="/register">Don’t have a profile yet? Go ahead and create one now!</a></p>
 </form>
 </main>
