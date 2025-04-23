@@ -9,43 +9,36 @@
     <title>Home</title>
     <link rel="stylesheet" href="/css/index.css" media="screen">
 <script>
-     // Wait for the page to load before adding event listeners
      document.addEventListener("DOMContentLoaded", function () {
 
-         // Home Button - goes to the home page
          document.querySelector("#index-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/index.html"; // Correct path to index page
+             e.preventDefault(); 
+             window.location.href = "/index.html"; 
          });
 
-         // Login Button - goes to the login page
          document.querySelector("#login-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/login.html"; // Correct path to login page
+             e.preventDefault(); 
+             window.location.href = "/login.html"; 
          });
 
-		// Login Button - goes to the login page
          document.querySelector("#login-button-bottom").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/login.html"; // Correct path to login page
+             e.preventDefault(); 
+             window.location.href = "/login.html"; 
          });
 
-         // Register Button - goes to the registration page
          document.querySelector("#register-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/register.html"; // Correct path to register page
+             e.preventDefault(); 
+             window.location.href = "/register.html"; 
          });
 		 
-		// Register Button - goes to the registration page
          document.querySelector("#register-button-body").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/register.html"; // Correct path to register page
+             e.preventDefault(); 
+             window.location.href = "/register.html"; 
          });
 		 
-		 // Register Button - goes to the registration page
          document.querySelector("#register-button-bottom").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/register.html"; // Correct path to register page
+             e.preventDefault(); 
+             window.location.href = "/register.html"; 
          });
 
      });
@@ -84,7 +77,6 @@
         <div class="u-clearfix u-sheet u-sheet-1">
             <div class="u-layout">
                 <div class="u-layout-row">
-                    <!-- Text Section -->
                     <div class="u-align-center u-container-style u-layout-cell u-size-23 u-layout-cell-1">
                         <div class="u-container-layout u-container-layout-1">
                             <p class="u-text u-text-1">
@@ -93,13 +85,11 @@
                         </div>
                     </div>
 
-                    <!-- Image Section -->
                     <div class="u-container-style u-image u-layout-cell u-size-37 u-image-1" data-image-width="2920" data-image-height="5184">
                         <img src="/images/image1.jpg" alt="background" style="width: 100%; height: auto;">
                     </div>
                 </div>
 
-                <!-- "Start Now" Button Positioned Outside the Image -->
                 <div class="u-container-layout u-container-layout-2">
                     <h2 class="u-text u-text-2">
                         <a id="register-button-body" class="u-text-white" style="text-decoration: none;">
