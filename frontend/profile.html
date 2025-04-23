@@ -117,19 +117,16 @@
   <script>
 	document.addEventListener("DOMContentLoaded", function () {
 
-         // Home Button - goes to the home page
          document.querySelector("#wellcome-button").addEventListener('click', function (e) {
              e.preventDefault(); // Prevent default link action
              window.location.href = "/wellcome.html"; // Correct path to index page
          });
 
-         // Login Button - goes to the login page
          document.querySelector("#profile-button").addEventListener('click', function (e) {
              e.preventDefault(); // Prevent default link action
              window.location.href = "/profile.html"; // Correct path to login page
          });
 
-         // Register Button - goes to the registration page
          document.querySelector("#logout-button").addEventListener('click', function (e) {
              e.preventDefault(); // Prevent default link action
              window.location.href = "/register.html"; // Correct path to register page
@@ -203,13 +200,12 @@ function fetchUserProfile() {
 
     console.log(`Fetching profile for username: ${username}`);
 
-    // Send a GET request to the backend with the username as a query parameter
     fetch(`http://localhost:8081/api/v1/user/profile?username=${encodeURIComponent(username)}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include',  // Ensure the session is included
+        credentials: 'include',  
     })
     .then(response => {
         if (!response.ok) {
@@ -220,7 +216,6 @@ function fetchUserProfile() {
     .then(data => {
     console.log('Profile Data:', data);
 
-    // Display profile data on the page
     document.getElementById('username').textContent = data.username || 'N/A';
     document.getElementById('firstName').textContent = data.firstName || 'N/A';
     document.getElementById('lastName').textContent = data.lastName || 'N/A';
@@ -246,7 +241,7 @@ function fetchUserProfile2() {
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include',  // Ensure the session is included
+        credentials: 'include', 
     })
     .then(response => {
         if (!response.ok) {
@@ -257,12 +252,9 @@ function fetchUserProfile2() {
     .then(data => {
         console.log('Profile and Timer Data:', data);
 
-        // Ensure the 'data' object contains the expected 'timer' property
         if (data && data.timeSpentStudying !== undefined) {
-            // Display the time spent studying (formatting it as needed)
             document.getElementById('timeSpent').textContent = formatTime(data.timeSpentStudying);
 
-            // Display other fields as well
             document.getElementById('numOfSessions').textContent = data.numberOfStudySessions || 'N/A';
             document.getElementById('weekStart').textContent = data.weekStartDate || 'N/A';
             document.getElementById('weekEnd').textContent = data.weekEndDate || 'N/A';
@@ -298,7 +290,7 @@ function fetchUserProfile3() {
         headers: {
             'Content-Type': 'application/json',
         },
-        credentials: 'include',  // Ensure the session is included
+        credentials: 'include',  
     })
     .then(response => {
         if (!response.ok) {
@@ -314,7 +306,6 @@ function fetchUserProfile3() {
         
             document.getElementById('timeSpent2').textContent = formatTime(data.timeSpentStudying);
 
-            // Display other fields as well
             document.getElementById('numOfSessions2').textContent = data.numberOfStudySessions || 'N/A';
             document.getElementById('day').textContent = data.currentDay || 'N/A';
         } else {
@@ -332,15 +323,14 @@ function fetchUserProfile3() {
     });
 }
 
-// Utility function to format time in a more readable way (hh:mm:ss)
 function formatTime(seconds) {
     if (seconds == null || isNaN(seconds)) {
         return 'N/A';
     }
 
-    const hrs = Math.floor(seconds / 3600);           // Hours
-    const mins = Math.floor((seconds % 3600) / 60);   // Minutes
-    const secs = seconds % 60;                        // Seconds
+    const hrs = Math.floor(seconds / 3600);          
+    const mins = Math.floor((seconds % 3600) / 60);   
+    const secs = seconds % 60;                       
 
     return `${hrs}h ${mins}m ${secs}s`;
 }
