@@ -11,25 +11,21 @@
     <link rel="stylesheet" href="/css/LoginAndRegisterForm.css" media="screen">
     <script src="/js/validation.js" type="text/javascript"></script>
 	<script>
-     // Wait for the page to load before adding event listeners
      document.addEventListener("DOMContentLoaded", function () {
 
-         // Home Button - goes to the home page
          document.querySelector("#index-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/index.html"; // Correct path to index page
+             e.preventDefault(); 
+             window.location.href = "/index.html"; 
          });
 
-         // Login Button - goes to the login page
          document.querySelector("#login-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/login.html"; // Correct path to login page
+             e.preventDefault(); 
+             window.location.href = "/login.html"; 
          });
 
-         // Register Button - goes to the registration page
          document.querySelector("#register-button").addEventListener('click', function (e) {
-             e.preventDefault(); // Prevent default link action
-             window.location.href = "/register.html"; // Correct path to register page
+             e.preventDefault(); 
+             window.location.href = "/register.html"; 
          });
 
      });
@@ -37,7 +33,7 @@
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#login-form").addEventListener('submit', function (e) {
-        e.preventDefault(); // Prevent form from submitting normally
+        e.preventDefault(); 
 
         const formData = new FormData(e.target);
         const data = {};
@@ -47,27 +43,27 @@ document.addEventListener("DOMContentLoaded", function () {
             data[key] = value;
         });
 
-        console.log("Form data being sent:", data); // Log form data for debugging
+        console.log("Form data being sent:", data); 
 		console.log(localStorage.getItem('authToken')); 
         
-        fetch('http://localhost:8081/api/v1/user/login', { // Make sure to match the API path in your controller
+        fetch('http://localhost:8081/api/v1/user/login', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data), // Send form data as JSON
+            body: JSON.stringify(data), 
 			credentials: 'include'
         })
         .then(response => {
             if (!response.ok) {
                 return response.text().then(text => { throw new Error(text); });
             }
-            return response.json();  // Parse response as JSON
+            return response.json();  
         })
         .then(data => {
             console.log('Login successful', data);
-			sessionStorage.setItem('username', data.username); // For session-specific data
-			localStorage.setItem('username', data.username);   // For persistent data across sessions
+			sessionStorage.setItem('username', data.username); 
+			localStorage.setItem('username', data.username);   
 
 
 			console.log('Stored username:', sessionStorage.getItem('username'));
@@ -77,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => {
             console.error('Error during login', error);
-            alert(`There was an error during login: ${error.message}`); // Show error to the user
+            alert(`There was an error during login: ${error.message}`); 
         });
     });
 });
@@ -118,18 +114,14 @@ document.addEventListener("DOMContentLoaded", function () {
     <h4>Log in</h4>
     <br>
 
-    <!-- Username Field -->
     <label for="username">Username:</label>
     <input type="username" id="username" name="username" required><br>
 
-    <!-- Password Field -->
     <label for="password">Password:</label>
     <input type="password" id="password" name="password" required><br>
 
-    <!-- Submit Button -->
     <input type="submit" value="Submit">
 
-    <!-- Link to Registration Page -->
     <p class="message"><a href="/register">Don’t have a profile yet? Go ahead and create one now!</a></p>
 </form>
 </main>
